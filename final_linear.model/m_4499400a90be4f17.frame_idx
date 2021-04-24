@@ -1,0 +1,23 @@
+[sframe]
+version=0
+num_segments=0
+num_columns=8
+nrows=98
+[column_names]
+0000=Iteration
+0001=Passes
+0002=Step size
+0003=Elapsed Time
+0004=Training Max Error
+0005=Validation Max Error
+0006=Training Root-Mean-Square Error
+0007=Validation Root-Mean-Square Error
+[column_files]
+0000=m_4499400a90be4f17.sidx:0
+0001=m_4499400a90be4f17.sidx:1
+0002=m_4499400a90be4f17.sidx:2
+0003=m_4499400a90be4f17.sidx:3
+0004=m_4499400a90be4f17.sidx:4
+0005=m_4499400a90be4f17.sidx:5
+0006=m_4499400a90be4f17.sidx:6
+0007=m_4499400a90be4f17.sidx:7
