@@ -205,17 +205,13 @@ features = ['ATV',
 
 @app.route('/', methods = ['GET', 'POST'])
 def method_name():
-    dataset = request.get_json() #dataset received in dictionary format
+    dataset = request.get_json() 
     given_sub = dataset['Sub_Category']
-    with open('test.json', 'w') as f:
+    with open('price_sample.json', 'w') as f:
         json.dump(dataset, f)
     
-    fashion_dataset = tc.SFrame.read_json('test.json',orient = 'lines')
-    # def Filtering_rank(s):
-    #     if s == []:
-    #         return 3188137
-    #     return int(s[0])
-    # fashion_dataset['Rank'] = fashion_dataset['Rank'].apply(Filtering_rank)
+    fashion_dataset = tc.SFrame.read_json('price_sample.json',orient = 'lines')
+    
     fashion_dataset['brand'] = fashion_dataset['brand'].apply(Filtering_brand)
     Title_without_punctuation = fashion_dataset['title'].apply(remove_punctuation)
     Description_without_punctuation = fashion_dataset['description'].apply(remove_punctuation)
@@ -224,7 +220,7 @@ def method_name():
     fashion_dataset['description_word_count'] = tc.text_analytics.count_words(Description_without_punctuation)
     fashion_dataset['description_tf_idf'] = tc.text_analytics.tf_idf(Description_without_punctuation)
     fashion_dataset['price'] = fashion_dataset['price'].apply(normalization)
-    # fashion_dataset['Rank'] = fashion_dataset['Rank'].apply(normalization)
+    
 
     for x in features:
         if x in given_sub:
@@ -238,7 +234,7 @@ def method_name():
 
     predicted_price = np.expm1(predicted_price_log)
 
-    return jsonify({'price':predicted_price[0]}) #can jsonify dictionary and feed it to the output, maybe wrong syntax
+    return jsonify({'price':predicted_price[0]})
 
 if __name__=='__main__':
     app.run(debug=True)
